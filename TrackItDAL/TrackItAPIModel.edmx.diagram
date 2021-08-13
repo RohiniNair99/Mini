@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2b118d31de14459b21a3d9a1dab985a" Name="Diagram1">
+        <EntityTypeShape EntityType="WebApiGroup2Model.Activity" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.ActivityPrticipantMap" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.Course" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.CourseGroupMap" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.Faculty" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.FacultyGroup" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.GroupTable" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.Participant" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiGroup2Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__Activity__CGId__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__Activity__Facult__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__ActivityP__Activ__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__ActivityP__Parti__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__CourseGro__Cours__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__CourseGro__Group__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__FacultyGr__Group__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__FacultyGr__Group__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiGroup2Model.FK__Participa__Group__276EDEB3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

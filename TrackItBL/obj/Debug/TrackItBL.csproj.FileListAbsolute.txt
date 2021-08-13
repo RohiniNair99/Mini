@@ -1,0 +1,14 @@
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItBL.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItBL.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItDAL.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItDTO.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\EntityFramework.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItDAL.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItDAL.dll.config
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\TrackItDTO.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\bin\Debug\EntityFramework.xml
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\obj\Debug\TrackItBL.csproj.AssemblyReference.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\obj\Debug\TrackItBL.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\obj\Debug\TrackItBL.csproj.CopyComplete
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\obj\Debug\TrackItBL.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItBL\obj\Debug\TrackItBL.pdb

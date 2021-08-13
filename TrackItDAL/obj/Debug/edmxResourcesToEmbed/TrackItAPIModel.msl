@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebApiGroup2ModelStoreContainer" CdmEntityContainer="TrackItconnect">
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.Activity">
+        <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+          <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="GitSubmission" ColumnName="GitSubmission" />
+          <ScalarProperty Name="CGId" ColumnName="CGId" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActivityPrticipantMaps">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.ActivityPrticipantMap">
+        <MappingFragment StoreEntitySet="ActivityPrticipantMap">
+          <ScalarProperty Name="APId" ColumnName="APId" />
+          <ScalarProperty Name="ActivityStatus" ColumnName="ActivityStatus" />
+          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+          <ScalarProperty Name="GithubLink" ColumnName="GithubLink" />
+          <ScalarProperty Name="PartiId" ColumnName="PartiId" />
+          <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseDuration" ColumnName="CourseDuration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseGroupMaps">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.CourseGroupMap">
+        <MappingFragment StoreEntitySet="CourseGroupMap">
+          <ScalarProperty Name="CGId" ColumnName="CGId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.Faculty">
+        <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacultyGroups">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.FacultyGroup">
+        <MappingFragment StoreEntitySet="FacultyGroup">
+          <ScalarProperty Name="FGId" ColumnName="FGId" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupTables">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.GroupTable">
+        <MappingFragment StoreEntitySet="GroupTable">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="NoOfParticipant" ColumnName="NoOfParticipant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participants">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.Participant">
+        <MappingFragment StoreEntitySet="Participant">
+          <ScalarProperty Name="PartiId" ColumnName="PartiId" />
+          <ScalarProperty Name="PartiName" ColumnName="PartiName" />
+          <ScalarProperty Name="PartiEmailid" ColumnName="PartiEmailid" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WebApiGroup2Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WebApiGroup2Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WebApiGroup2Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WebApiGroup2Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WebApiGroup2Model.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WebApiGroup2Model.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WebApiGroup2Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WebApiGroup2Model.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="uspAddActivity" FunctionName="WebApiGroup2Model.Store.uspAddActivity" />
+    <FunctionImportMapping FunctionImportName="uspAddActivityParticipantMap" FunctionName="WebApiGroup2Model.Store.uspAddActivityParticipantMap" />
+    <FunctionImportMapping FunctionImportName="uspAddCourse" FunctionName="WebApiGroup2Model.Store.uspAddCourse" />
+    <FunctionImportMapping FunctionImportName="uspAddCourseGroupMap" FunctionName="WebApiGroup2Model.Store.uspAddCourseGroupMap" />
+    <FunctionImportMapping FunctionImportName="uspAddFaculty" FunctionName="WebApiGroup2Model.Store.uspAddFaculty" />
+    <FunctionImportMapping FunctionImportName="uspAddGacultyMap" FunctionName="WebApiGroup2Model.Store.uspAddGacultyMap" />
+    <FunctionImportMapping FunctionImportName="uspAddGroup" FunctionName="WebApiGroup2Model.Store.uspAddGroup" />
+    <FunctionImportMapping FunctionImportName="uspAddParticipant" FunctionName="WebApiGroup2Model.Store.uspAddParticipant" />
+    <FunctionImportMapping FunctionImportName="uspUpdateActivity" FunctionName="WebApiGroup2Model.Store.uspUpdateActivity" />
+    <FunctionImportMapping FunctionImportName="uspUpdateActivityParticipantMap" FunctionName="WebApiGroup2Model.Store.uspUpdateActivityParticipantMap" />
+    <FunctionImportMapping FunctionImportName="uspUpdateCourse" FunctionName="WebApiGroup2Model.Store.uspUpdateCourse" />
+    <FunctionImportMapping FunctionImportName="uspUpdateFaculty" FunctionName="WebApiGroup2Model.Store.uspUpdateFaculty" />
+    <FunctionImportMapping FunctionImportName="uspUpdateGroup" FunctionName="WebApiGroup2Model.Store.uspUpdateGroup" />
+    <FunctionImportMapping FunctionImportName="uspUpdateParticipant" FunctionName="WebApiGroup2Model.Store.uspUpdateParticipant" />
+    <FunctionImportMapping FunctionImportName="uspUpdateParticipantGroupId" FunctionName="WebApiGroup2Model.Store.uspUpdateParticipantGroupId" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebApiGroup2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="ActivityId" />
+    </Key>
+    <Property Name="ActivityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActivityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="GitSubmission" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CGId" Type="Int32" />
+    <Property Name="FacultyId" Type="Int32" />
+    <NavigationProperty Name="CourseGroupMap" Relationship="Self.FK__Activity__CGId__300424B4" FromRole="Activity" ToRole="CourseGroupMap" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__Activity__Facult__30F848ED" FromRole="Activity" ToRole="Faculty" />
+    <NavigationProperty Name="ActivityPrticipantMaps" Relationship="Self.FK__ActivityP__Activ__4222D4EF" FromRole="Activity" ToRole="ActivityPrticipantMap" />
+  </EntityType>
+  <EntityType Name="ActivityPrticipantMap">
+    <Key>
+      <PropertyRef Name="APId" />
+    </Key>
+    <Property Name="APId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActivityStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SubmissionDate" Type="DateTime" Precision="3" />
+    <Property Name="GithubLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PartiId" Type="Int32" />
+    <Property Name="ActivityId" Type="Int32" />
+    <NavigationProperty Name="Activity" Relationship="Self.FK__ActivityP__Activ__4222D4EF" FromRole="ActivityPrticipantMap" ToRole="Activity" />
+    <NavigationProperty Name="Participant" Relationship="Self.FK__ActivityP__Parti__412EB0B6" FromRole="ActivityPrticipantMap" ToRole="Participant" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CourseDuration" Type="Int32" />
+    <NavigationProperty Name="CourseGroupMaps" Relationship="Self.FK__CourseGro__Cours__2D27B809" FromRole="Course" ToRole="CourseGroupMap" />
+  </EntityType>
+  <EntityType Name="CourseGroupMap">
+    <Key>
+      <PropertyRef Name="CGId" />
+    </Key>
+    <Property Name="CGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseId" Type="Int32" />
+    <Property Name="GroupId" Type="Int32" />
+    <NavigationProperty Name="Activities" Relationship="Self.FK__Activity__CGId__300424B4" FromRole="CourseGroupMap" ToRole="Activity" />
+    <NavigationProperty Name="Course" Relationship="Self.FK__CourseGro__Cours__2D27B809" FromRole="CourseGroupMap" ToRole="Course" />
+    <NavigationProperty Name="GroupTable" Relationship="Self.FK__CourseGro__Group__2C3393D0" FromRole="CourseGroupMap" ToRole="GroupTable" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="FacultyId" />
+    </Key>
+    <Property Name="FacultyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FacultyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Activities" Relationship="Self.FK__Activity__Facult__30F848ED" FromRole="Faculty" ToRole="Activity" />
+    <NavigationProperty Name="FacultyGroups" Relationship="Self.FK__FacultyGr__Group__34C8D9D1" FromRole="Faculty" ToRole="FacultyGroup" />
+  </EntityType>
+  <EntityType Name="FacultyGroup">
+    <Key>
+      <PropertyRef Name="FGId" />
+    </Key>
+    <Property Name="FGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FacultyId" Type="Int32" />
+    <Property Name="GroupId" Type="Int32" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK__FacultyGr__Group__34C8D9D1" FromRole="FacultyGroup" ToRole="Faculty" />
+    <NavigationProperty Name="GroupTable" Relationship="Self.FK__FacultyGr__Group__35BCFE0A" FromRole="FacultyGroup" ToRole="GroupTable" />
+  </EntityType>
+  <EntityType Name="GroupTable">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfParticipant" Type="Int32" />
+    <NavigationProperty Name="CourseGroupMaps" Relationship="Self.FK__CourseGro__Group__2C3393D0" FromRole="GroupTable" ToRole="CourseGroupMap" />
+    <NavigationProperty Name="FacultyGroups" Relationship="Self.FK__FacultyGr__Group__35BCFE0A" FromRole="GroupTable" ToRole="FacultyGroup" />
+    <NavigationProperty Name="Participants" Relationship="Self.FK__Participa__Group__276EDEB3" FromRole="GroupTable" ToRole="Participant" />
+  </EntityType>
+  <EntityType Name="Participant">
+    <Key>
+      <PropertyRef Name="PartiId" />
+    </Key>
+    <Property Name="PartiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartiName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PartiEmailid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="GroupId" Type="Int32" />
+    <NavigationProperty Name="ActivityPrticipantMaps" Relationship="Self.FK__ActivityP__Parti__412EB0B6" FromRole="Participant" ToRole="ActivityPrticipantMap" />
+    <NavigationProperty Name="GroupTable" Relationship="Self.FK__Participa__Group__276EDEB3" FromRole="Participant" ToRole="GroupTable" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Activity__CGId__300424B4">
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseGroupMap">
+        <PropertyRef Name="CGId" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="CGId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Activity__Facult__30F848ED">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ActivityP__Activ__4222D4EF">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+    <End Role="ActivityPrticipantMap" Type="Self.ActivityPrticipantMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="ActivityId" />
+      </Principal>
+      <Dependent Role="ActivityPrticipantMap">
+        <PropertyRef Name="ActivityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ActivityP__Parti__412EB0B6">
+    <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+    <End Role="ActivityPrticipantMap" Type="Self.ActivityPrticipantMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participant">
+        <PropertyRef Name="PartiId" />
+      </Principal>
+      <Dependent Role="ActivityPrticipantMap">
+        <PropertyRef Name="PartiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseGro__Cours__2D27B809">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseGroupMap">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseGro__Group__2C3393D0">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="CourseGroupMap">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FacultyGr__Group__34C8D9D1">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="FacultyGroup" Type="Self.FacultyGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="FacultyGroup">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FacultyGr__Group__35BCFE0A">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="FacultyGroup" Type="Self.FacultyGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="FacultyGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Participa__Group__276EDEB3">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="Participant" Type="Self.Participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="Participant">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrackItconnect" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Activities" EntityType="Self.Activity" />
+    <EntitySet Name="ActivityPrticipantMaps" EntityType="Self.ActivityPrticipantMap" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="CourseGroupMaps" EntityType="Self.CourseGroupMap" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+    <EntitySet Name="FacultyGroups" EntityType="Self.FacultyGroup" />
+    <EntitySet Name="GroupTables" EntityType="Self.GroupTable" />
+    <EntitySet Name="Participants" EntityType="Self.Participant" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Activity__CGId__300424B4" Association="Self.FK__Activity__CGId__300424B4">
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMaps" />
+      <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Activity__Facult__30F848ED" Association="Self.FK__Activity__Facult__30F848ED">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ActivityP__Activ__4222D4EF" Association="Self.FK__ActivityP__Activ__4222D4EF">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="ActivityPrticipantMap" EntitySet="ActivityPrticipantMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ActivityP__Parti__412EB0B6" Association="Self.FK__ActivityP__Parti__412EB0B6">
+      <End Role="Participant" EntitySet="Participants" />
+      <End Role="ActivityPrticipantMap" EntitySet="ActivityPrticipantMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseGro__Cours__2D27B809" Association="Self.FK__CourseGro__Cours__2D27B809">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseGro__Group__2C3393D0" Association="Self.FK__CourseGro__Group__2C3393D0">
+      <End Role="GroupTable" EntitySet="GroupTables" />
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FacultyGr__Group__34C8D9D1" Association="Self.FK__FacultyGr__Group__34C8D9D1">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="FacultyGroup" EntitySet="FacultyGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FacultyGr__Group__35BCFE0A" Association="Self.FK__FacultyGr__Group__35BCFE0A">
+      <End Role="GroupTable" EntitySet="GroupTables" />
+      <End Role="FacultyGroup" EntitySet="FacultyGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Participa__Group__276EDEB3" Association="Self.FK__Participa__Group__276EDEB3">
+      <End Role="GroupTable" EntitySet="GroupTables" />
+      <End Role="Participant" EntitySet="Participants" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="uspAddActivity" ReturnType="Collection(String)">
+      <Parameter Name="ActivityName" Mode="In" Type="String" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="GitSubmission" Mode="In" Type="String" />
+      <Parameter Name="CGId" Mode="In" Type="Int32" />
+      <Parameter Name="FacultyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddActivityParticipantMap" ReturnType="Collection(String)">
+      <Parameter Name="activityStatus" Mode="In" Type="String" />
+      <Parameter Name="submissionDate" Mode="In" Type="DateTime" />
+      <Parameter Name="githubLink" Mode="In" Type="String" />
+      <Parameter Name="participantId" Mode="In" Type="Int32" />
+      <Parameter Name="activityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddCourse" ReturnType="Collection(String)">
+      <Parameter Name="CourseName" Mode="In" Type="String" />
+      <Parameter Name="CourseDuration" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddCourseGroupMap" ReturnType="Collection(String)">
+      <Parameter Name="CourseId" Mode="In" Type="Int32" />
+      <Parameter Name="GroupId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddFaculty" ReturnType="Collection(String)">
+      <Parameter Name="FacultyName" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddGacultyMap" ReturnType="Collection(String)">
+      <Parameter Name="GroupId" Mode="In" Type="Int32" />
+      <Parameter Name="FacultyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddGroup" ReturnType="Collection(String)">
+      <Parameter Name="GroupName" Mode="In" Type="String" />
+      <Parameter Name="NoofParticipant" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspAddParticipant" ReturnType="Collection(String)">
+      <Parameter Name="PartiName" Mode="In" Type="String" />
+      <Parameter Name="PartiEmailid" Mode="In" Type="String" />
+      <Parameter Name="GroupId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateActivity" ReturnType="Collection(String)">
+      <Parameter Name="activityName" Mode="In" Type="String" />
+      <Parameter Name="startDate" Mode="In" Type="DateTime" />
+      <Parameter Name="endDate" Mode="In" Type="DateTime" />
+      <Parameter Name="gitSubmission" Mode="In" Type="String" />
+      <Parameter Name="CGId" Mode="In" Type="Int32" />
+      <Parameter Name="facultyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateActivityParticipantMap" ReturnType="Collection(String)">
+      <Parameter Name="participantId" Mode="In" Type="Int32" />
+      <Parameter Name="activityId" Mode="In" Type="Int32" />
+      <Parameter Name="activityStatus" Mode="In" Type="String" />
+      <Parameter Name="submissionDate" Mode="In" Type="DateTime" />
+      <Parameter Name="githubLink" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateCourse" ReturnType="Collection(String)">
+      <Parameter Name="courseId" Mode="In" Type="Int32" />
+      <Parameter Name="courseName" Mode="In" Type="String" />
+      <Parameter Name="courseDuration" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateFaculty" ReturnType="Collection(String)">
+      <Parameter Name="facultyName" Mode="In" Type="String" />
+      <Parameter Name="emailId" Mode="In" Type="String" />
+      <Parameter Name="facultyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateGroup" ReturnType="Collection(String)">
+      <Parameter Name="GroupName" Mode="In" Type="String" />
+      <Parameter Name="NoOfParticipants" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateParticipant" ReturnType="Collection(String)">
+      <Parameter Name="PartiId" Mode="In" Type="Int32" />
+      <Parameter Name="participantName" Mode="In" Type="String" />
+      <Parameter Name="partiEmailId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateParticipantGroupId" ReturnType="Collection(String)">
+      <Parameter Name="GroupId" Mode="In" Type="Int32" />
+      <Parameter Name="PartiId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

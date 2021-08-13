@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebApiGroup2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="ActivityId" />
+    </Key>
+    <Property Name="ActivityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivityName" Type="varchar" MaxLength="255" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="GitSubmission" Type="char" MaxLength="10" />
+    <Property Name="CGId" Type="int" />
+    <Property Name="FacultyId" Type="int" />
+  </EntityType>
+  <EntityType Name="ActivityPrticipantMap">
+    <Key>
+      <PropertyRef Name="APId" />
+    </Key>
+    <Property Name="APId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivityStatus" Type="varchar" MaxLength="255" />
+    <Property Name="SubmissionDate" Type="datetime" />
+    <Property Name="GithubLink" Type="varchar" MaxLength="255" />
+    <Property Name="PartiId" Type="int" />
+    <Property Name="ActivityId" Type="int" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="varchar" MaxLength="255" />
+    <Property Name="CourseDuration" Type="int" />
+  </EntityType>
+  <EntityType Name="CourseGroupMap">
+    <Key>
+      <PropertyRef Name="CGId" />
+    </Key>
+    <Property Name="CGId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseId" Type="int" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="FacultyId" />
+    </Key>
+    <Property Name="FacultyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacultyName" Type="varchar" MaxLength="255" />
+    <Property Name="EmailId" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FacultyGroup">
+    <Key>
+      <PropertyRef Name="FGId" />
+    </Key>
+    <Property Name="FGId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacultyId" Type="int" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="GroupTable">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="varchar" MaxLength="255" />
+    <Property Name="NoOfParticipant" Type="int" />
+  </EntityType>
+  <EntityType Name="Participant">
+    <Key>
+      <PropertyRef Name="PartiId" />
+    </Key>
+    <Property Name="PartiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartiName" Type="varchar" MaxLength="255" />
+    <Property Name="PartiEmailid" Type="varchar" MaxLength="255" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Activity__CGId__300424B4">
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseGroupMap">
+        <PropertyRef Name="CGId" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="CGId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Activity__Facult__30F848ED">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ActivityP__Activ__4222D4EF">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+    <End Role="ActivityPrticipantMap" Type="Self.ActivityPrticipantMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="ActivityId" />
+      </Principal>
+      <Dependent Role="ActivityPrticipantMap">
+        <PropertyRef Name="ActivityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ActivityP__Parti__412EB0B6">
+    <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+    <End Role="ActivityPrticipantMap" Type="Self.ActivityPrticipantMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participant">
+        <PropertyRef Name="PartiId" />
+      </Principal>
+      <Dependent Role="ActivityPrticipantMap">
+        <PropertyRef Name="PartiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseGro__Cours__2D27B809">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseGroupMap">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseGro__Group__2C3393D0">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="CourseGroupMap" Type="Self.CourseGroupMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="CourseGroupMap">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FacultyGr__Group__34C8D9D1">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="FacultyGroup" Type="Self.FacultyGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="FacultyGroup">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FacultyGr__Group__35BCFE0A">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="FacultyGroup" Type="Self.FacultyGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="FacultyGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Participa__Group__276EDEB3">
+    <End Role="GroupTable" Type="Self.GroupTable" Multiplicity="0..1" />
+    <End Role="Participant" Type="Self.Participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupTable">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="Participant">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="uspAddActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ActivityName" Type="varchar" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="GitSubmission" Type="char" Mode="In" />
+    <Parameter Name="CGId" Type="int" Mode="In" />
+    <Parameter Name="FacultyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddActivityParticipantMap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="activityStatus" Type="varchar" Mode="In" />
+    <Parameter Name="submissionDate" Type="datetime" Mode="In" />
+    <Parameter Name="githubLink" Type="varchar" Mode="In" />
+    <Parameter Name="participantId" Type="int" Mode="In" />
+    <Parameter Name="activityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseName" Type="varchar" Mode="In" />
+    <Parameter Name="CourseDuration" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddCourseGroupMap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseId" Type="int" Mode="In" />
+    <Parameter Name="GroupId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddFaculty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacultyName" Type="varchar" Mode="In" />
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="uspAddGacultyMap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupId" Type="int" Mode="In" />
+    <Parameter Name="FacultyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupName" Type="varchar" Mode="In" />
+    <Parameter Name="NoofParticipant" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspAddParticipant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartiName" Type="varchar" Mode="In" />
+    <Parameter Name="PartiEmailid" Type="varchar" Mode="In" />
+    <Parameter Name="GroupId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="activityName" Type="varchar" Mode="In" />
+    <Parameter Name="startDate" Type="datetime" Mode="In" />
+    <Parameter Name="endDate" Type="datetime" Mode="In" />
+    <Parameter Name="gitSubmission" Type="varchar" Mode="In" />
+    <Parameter Name="CGId" Type="int" Mode="In" />
+    <Parameter Name="facultyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateActivityParticipantMap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="participantId" Type="int" Mode="In" />
+    <Parameter Name="activityId" Type="int" Mode="In" />
+    <Parameter Name="activityStatus" Type="varchar" Mode="In" />
+    <Parameter Name="submissionDate" Type="datetime" Mode="In" />
+    <Parameter Name="githubLink" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="courseId" Type="int" Mode="In" />
+    <Parameter Name="courseName" Type="varchar" Mode="In" />
+    <Parameter Name="courseDuration" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateFaculty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="facultyName" Type="varchar" Mode="In" />
+    <Parameter Name="emailId" Type="varchar" Mode="In" />
+    <Parameter Name="facultyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupName" Type="varchar" Mode="In" />
+    <Parameter Name="NoOfParticipants" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateParticipant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartiId" Type="int" Mode="In" />
+    <Parameter Name="participantName" Type="varchar" Mode="In" />
+    <Parameter Name="partiEmailId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="uspUpdateParticipantGroupId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupId" Type="int" Mode="In" />
+    <Parameter Name="PartiId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="WebApiGroup2ModelStoreContainer">
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActivityPrticipantMap" EntityType="Self.ActivityPrticipantMap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseGroupMap" EntityType="Self.CourseGroupMap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacultyGroup" EntityType="Self.FacultyGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupTable" EntityType="Self.GroupTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Participant" EntityType="Self.Participant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Activity__CGId__300424B4" Association="Self.FK__Activity__CGId__300424B4">
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMap" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Activity__Facult__30F848ED" Association="Self.FK__Activity__Facult__30F848ED">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ActivityP__Activ__4222D4EF" Association="Self.FK__ActivityP__Activ__4222D4EF">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="ActivityPrticipantMap" EntitySet="ActivityPrticipantMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ActivityP__Parti__412EB0B6" Association="Self.FK__ActivityP__Parti__412EB0B6">
+      <End Role="Participant" EntitySet="Participant" />
+      <End Role="ActivityPrticipantMap" EntitySet="ActivityPrticipantMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseGro__Cours__2D27B809" Association="Self.FK__CourseGro__Cours__2D27B809">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseGro__Group__2C3393D0" Association="Self.FK__CourseGro__Group__2C3393D0">
+      <End Role="GroupTable" EntitySet="GroupTable" />
+      <End Role="CourseGroupMap" EntitySet="CourseGroupMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FacultyGr__Group__34C8D9D1" Association="Self.FK__FacultyGr__Group__34C8D9D1">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="FacultyGroup" EntitySet="FacultyGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FacultyGr__Group__35BCFE0A" Association="Self.FK__FacultyGr__Group__35BCFE0A">
+      <End Role="GroupTable" EntitySet="GroupTable" />
+      <End Role="FacultyGroup" EntitySet="FacultyGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Participa__Group__276EDEB3" Association="Self.FK__Participa__Group__276EDEB3">
+      <End Role="GroupTable" EntitySet="GroupTable" />
+      <End Role="Participant" EntitySet="Participant" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

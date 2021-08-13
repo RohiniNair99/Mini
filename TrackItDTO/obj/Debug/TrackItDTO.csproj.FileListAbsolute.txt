@@ -1,0 +1,6 @@
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\bin\Debug\TrackItDTO.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\bin\Debug\TrackItDTO.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\obj\Debug\TrackItDTO.csproj.AssemblyReference.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\obj\Debug\TrackItDTO.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\obj\Debug\TrackItDTO.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDTO\obj\Debug\TrackItDTO.pdb

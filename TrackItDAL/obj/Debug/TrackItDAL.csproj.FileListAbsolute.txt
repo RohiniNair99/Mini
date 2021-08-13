@@ -1,0 +1,14 @@
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\TrackItDAL.dll.config
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\TrackItDAL.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\TrackItDAL.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\EntityFramework.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\TrackItDTO.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\TrackItDTO.pdb
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\EntityFramework.xml
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\obj\Debug\TrackItDAL.csproj.AssemblyReference.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\obj\Debug\TrackItDAL.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\obj\Debug\TrackItDAL.csproj.CopyComplete
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\obj\Debug\TrackItDAL.dll
+C:\Users\Hp\source\repos\TrackItProject\TrackItDAL\obj\Debug\TrackItDAL.pdb
